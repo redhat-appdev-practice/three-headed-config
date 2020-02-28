@@ -1,12 +1,31 @@
 import React from 'react';
-import { Container } from 'semantic-ui-react';
+import { Button, Container, Header, Segment } from 'semantic-ui-react';
 
-const heading = () => (
-    <div>
-        <Container fluid={true}>
-            <h1 style={{textAlign: "center"}}>Heading</h1>
-        </Container>
-    </div>
-)
+const heading = props => {
+  const handleLogout = () => {
+    props.history.push('/login');
+    props.userService.logout();
+  };
+
+  return (
+    <Segment inverted style={{ padding: '1em 0em' }}>
+      <Container fluid={true} style={{ height: '45px' }}>
+        <Header size="huge" floated="left" inverted>
+          3-Headed Config
+        </Header>
+        {props.userService.currentUserValue && (
+          <Button
+            inverted
+            floated="right"
+            attached="top"
+            onClick={handleLogout}
+          >
+            Logout
+          </Button>
+        )}
+      </Container>
+    </Segment>
+  );
+};
 
 export default heading;

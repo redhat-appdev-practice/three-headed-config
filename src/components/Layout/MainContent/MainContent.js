@@ -1,10 +1,10 @@
 import React from 'react';
-import LoginPage from '../../../containers/Login/LoginPage';
+import CatalogView from '../../../containers/Catalog/CatalogView';
 
 const mainContent = () => (
-    <div>
-        <LoginPage/>
-    </div>
-)
+  <div>
+    <CatalogView />
+  </div>
+);
 
 export default mainContent;
