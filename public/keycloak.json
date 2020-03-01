@@ -1,0 +1,8 @@
+{
+    "realm": "three-headed-config",
+    "auth-server-url": "http://localhost:8080/auth/",
+    "ssl-required": "external",
+    "resource": "three-headed-config-app",
+    "public-client": true,
+    "confidential-port": 0
+  }

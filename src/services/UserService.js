@@ -7,6 +7,15 @@ export default class UserService {
       JSON.parse(localStorage.getItem('currentUser'))
     );
     this.currentUser = this.currentUserSubject.asObservable();
+    window.addEventListener('storage', this._listenForStorageChanges);
+  }
+
+  _listenForStorageChanges = (event) => {
+    const nextUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(`In listenForStorageChanges. nextUser = ${nextUser}`);
+    if (nextUser !== this.currentUserSubject.value) {
+      this.currentUserSubject.next(nextUser);
+    }
   }
 
   get currentUserValue() {

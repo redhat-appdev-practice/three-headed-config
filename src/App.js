@@ -24,7 +24,7 @@ class App extends Component {
         currentUser: x
       })
     );
-    if (!this.state.currentUser && !this.props.ssoEnabled) {
+    if (!this.state.currentUser && !this.props.sso) {
       history.push('/login');
     }
   }
@@ -36,7 +36,7 @@ class App extends Component {
       <Container fluid={true}>
         <Heading history={history} userService={this.userService} />
         <Router history={history}>
-          {!currentUser && !this.props.ssoEnabled && (
+          {!currentUser && !this.props.sso && (
             <Route
               path="/login"
               render={props => (

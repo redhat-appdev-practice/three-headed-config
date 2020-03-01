@@ -3,8 +3,8 @@ import { Button, Container, Header, Segment } from 'semantic-ui-react';
 
 const heading = props => {
   const handleLogout = () => {
-    props.history.push('/login');
     props.userService.logout();
+    props.history.push('/login');
   };
 
   return (
