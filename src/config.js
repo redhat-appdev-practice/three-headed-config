@@ -10,7 +10,10 @@ const dev = {
 };
 
 const local = {
-  ...dev
+  init: () => {},
+  auth: fakeAuth,
+  useSSO: false,
+  apiUrl: 'http://localhost:3007'
 };
 
 const prod = {
