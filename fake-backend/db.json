@@ -1,0 +1,18 @@
+{
+    "catalog": [
+        {
+            "id": 0,
+            "title": "The Velvet Underground & Nico",
+            "year": 1967,
+            "label": "Polydor",
+            "rating": 5.0
+        },
+        {
+            "id": 1,
+            "title": "White Light/White Heat",
+            "year": 1968,
+            "label": "Polydor/Verve",
+            "rating": 5.0
+        }
+    ]
+}

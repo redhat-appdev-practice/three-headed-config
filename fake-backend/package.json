@@ -1,0 +1,15 @@
+{
+    "name": "fake-backend",
+    "version": "1.0.0",
+    "description": "An easy way to mock a backend server",
+    "main": "index.js",
+    "scripts": {
+        "start": "json-server -p 3007 -w db.json",
+        "test": "echo Error: no test specified && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "json-server": "0.16.1"
+    }
+}
