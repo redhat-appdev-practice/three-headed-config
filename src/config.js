@@ -6,7 +6,7 @@ const dev = {
   init: () => {},
   auth: fakeAuth,
   useSSO: false,
-  apiUrl: ''
+  apiUrl: 'http://www.example.com'
 };
 
 const local = {
@@ -38,6 +38,6 @@ if (process.env.REACT_APP_STAGE === 'production') {
 config.init();
 
 export default {
-  TITLE: 'Feedback 360',
+  TITLE: 'VU Catalog',
   ...config
 };
