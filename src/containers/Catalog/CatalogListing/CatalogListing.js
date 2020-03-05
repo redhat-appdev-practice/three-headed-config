@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { List, Container, Header } from 'semantic-ui-react';
-import { getAlbums } from '../../services/CatalogService';
+import { getAlbums } from '../../../services/CatalogService';
 
-class CatalogView extends Component {
+class CatalogListing extends Component {
   // catalog = [
   //   {
   //     id: 0,
@@ -83,4 +83,4 @@ class CatalogView extends Component {
   }
 }
 
-export default CatalogView;
+export default CatalogListing;

@@ -1,10 +1,19 @@
 import React from 'react';
-import CatalogView from '../../../containers/Catalog/CatalogView';
+import CatalogListing from '../../../containers/Catalog/CatalogListing/CatalogListing';
+import CatalogBuilder from '../../../containers/Catalog/CatalogBuilder';
 
-const mainContent = () => (
-  <div>
-    <CatalogView />
-  </div>
-);
+const mainContent = (props) => {
+    let content;
+    if (props.user && props.user.role === 'admin') {
+        content = <CatalogBuilder/>
+    } else {
+        content = <CatalogListing/>
+    }
+    return (
+        <div>
+            {content}
+        </div>
+    )
+}
 
 export default mainContent;
