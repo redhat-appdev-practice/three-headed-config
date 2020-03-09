@@ -7,10 +7,14 @@ const heading = props => {
     props.history.push('/login');
   };
 
+  const handleLogoClicked = () => {
+    props.history.push('/');
+  }
+
   return (
     <Segment inverted style={{ padding: '1em 0em' }}>
       <Container fluid={true} style={{ height: '45px' }}>
-        <Header size="huge" floated="left" inverted>
+        <Header size="huge" floated="left" inverted onClick={handleLogoClicked} style={{cursor: 'pointer'}}>
           3-Headed Config
         </Header>
         {props.userService.currentUserValue && (

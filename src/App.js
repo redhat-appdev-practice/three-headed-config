@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
-import Heading from './components/Layout/Heading/Heading';
-import MainContent from './components/Layout/MainContent/MainContent';
-import { Router, Route } from 'react-router-dom';
-import LoginPage from './containers/Login/LoginPage';
-import { history } from './helpers/history';
-import UserService from './services/UserService';
-import { Container } from 'semantic-ui-react';
+import React, { Component } from "react";
+import Heading from "./components/Layout/Heading/Heading";
+import MainContent from "./components/Layout/MainContent/MainContent";
+import { Router, Route, Switch } from "react-router-dom";
+import LoginPage from "./containers/Login/LoginPage";
+import { history } from "./helpers/history";
+import UserService from "./services/UserService";
+import { Container } from "semantic-ui-react";
+import AddCatalogListing from "./containers/Catalog/CatalogListing/AddCatalogListing/AddCatalogListing";
 
 class App extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class App extends Component {
       })
     );
     if (!this.state.currentUser && !this.props.sso) {
-      history.push('/login');
+      history.push("/login");
     }
   }
 
@@ -45,12 +46,29 @@ class App extends Component {
             />
           )}
           {currentUser && (
-            <Route
-              path="/"
-              render={props => (
-                <MainContent {...props} user={this.state.currentUser} />
-              )}
-            />
+            <Switch>
+              <Route
+                path="/add"
+                render={props => (
+                  <AddCatalogListing
+                    {...props}
+                    history={history}
+                    user={this.state.currentUser}
+                  />
+                )}
+              />
+              <Route
+                path="/"
+                exact
+                render={props => (
+                  <MainContent
+                    {...props}
+                    history={history}
+                    user={this.state.currentUser}
+                  />
+                )}
+              />
+            </Switch>
           )}
         </Router>
       </Container>

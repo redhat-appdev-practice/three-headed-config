@@ -1,23 +1,24 @@
-import React, { Component } from 'react';
-import { Grid, Header, Image, Form, Segment } from 'semantic-ui-react';
+import React, { Component } from "react";
+import { Grid, Header, Image, Form, Segment } from "semantic-ui-react";
 
 class LoginPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: ''
+      email: "",
+      password: ""
     };
 
     // redirect to home if already logged in
     if (this.props.userService.currentUserValue) {
-      this.props.history.push('/');
+      this.props.history.push("/");
     }
   }
 
   handleSubmit = async () => {
     try {
       await this.props.userService.login(this.state.email, this.state.password);
+      this.props.history.push("/");
     } catch (error) {
       console.error(error);
     }
@@ -27,7 +28,7 @@ class LoginPage extends Component {
     return (
       <Grid
         textAlign="center"
-        style={{ height: '100vh' }}
+        style={{ height: "100vh" }}
         verticalAlign="middle"
       >
         <Grid.Column style={{ maxWidth: 450 }}>

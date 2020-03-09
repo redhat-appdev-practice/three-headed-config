@@ -5,9 +5,9 @@ import CatalogBuilder from '../../../containers/Catalog/CatalogBuilder';
 const mainContent = (props) => {
     let content;
     if (props.user && props.user.role === 'admin') {
-        content = <CatalogBuilder/>
+        content = <CatalogBuilder {...props}/>
     } else {
-        content = <CatalogListing/>
+        content = <CatalogListing />
     }
     return (
         <div>
