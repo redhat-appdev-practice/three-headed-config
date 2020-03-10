@@ -25,15 +25,17 @@ class CatalogListing extends Component {
     const albumListing = this.state.albums.map((album, index) => (
       <List.Item key={album.id}>
         <List.Content>
-          <Button
-            icon
-            size="small"
-            onClick={() => {
-              this.handleEditAlbum(album);
-            }}
-          >
-            <Icon name="edit"></Icon>
-          </Button>
+          {this.props.editable && (
+            <Button
+              icon
+              size="small"
+              onClick={() => {
+                this.handleEditAlbum(album);
+              }}
+            >
+              <Icon name="edit"></Icon>
+            </Button>
+          )}
           <List.Header>{album.title}</List.Header>
           <List.Description>
             {album.year} - {album.label} rating: {album.rating}
