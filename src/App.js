@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import Heading from "./components/Layout/Heading/Heading";
 import MainContent from "./components/Layout/MainContent/MainContent";
-import { Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import LoginPage from "./containers/Login/LoginPage";
-import { history } from "./helpers/history";
 import UserService from "./services/UserService";
 import { Container } from "semantic-ui-react";
-import AddCatalogListing from "./containers/Catalog/CatalogListing/AddCatalogListing/AddCatalogListing";
+import UpdateCatalogListing from "./containers/Catalog/CatalogListing/UpdateCatalogListing/UpdateCatalogListing";
 
 class App extends Component {
   constructor(props) {
@@ -25,24 +24,24 @@ class App extends Component {
         currentUser: x
       })
     );
-    if (!this.state.currentUser && !this.props.sso) {
-      history.push("/login");
-    }
   }
 
   render() {
     const { currentUser } = this.state;
+    const showRedirect =
+      !this.state.currentUser && !this.props.sso ? (
+        <Redirect to="/login" />
+      ) : null;
 
     return (
       <Container fluid={true}>
-        <Heading history={history} userService={this.userService} />
-        <Router history={history}>
+        <BrowserRouter>
+          {showRedirect}
+          <Heading userService={this.userService} />
           {!currentUser && !this.props.sso && (
             <Route
               path="/login"
-              render={props => (
-                <LoginPage history={history} userService={this.userService} />
-              )}
+              render={props => <LoginPage userService={this.userService} />}
             />
           )}
           {currentUser && (
@@ -50,9 +49,17 @@ class App extends Component {
               <Route
                 path="/add"
                 render={props => (
-                  <AddCatalogListing
+                  <UpdateCatalogListing
                     {...props}
-                    history={history}
+                    user={this.state.currentUser}
+                  />
+                )}
+              />
+              <Route
+                path="/edit"
+                render={props => (
+                  <UpdateCatalogListing
+                    {...props}
                     user={this.state.currentUser}
                   />
                 )}
@@ -61,16 +68,12 @@ class App extends Component {
                 path="/"
                 exact
                 render={props => (
-                  <MainContent
-                    {...props}
-                    history={history}
-                    user={this.state.currentUser}
-                  />
+                  <MainContent {...props} user={this.state.currentUser} />
                 )}
               />
             </Switch>
           )}
-        </Router>
+        </BrowserRouter>
       </Container>
     );
   }

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import { Grid, Header, Image, Form, Segment } from "semantic-ui-react";
 
 class LoginPage extends Component {
@@ -66,4 +67,4 @@ class LoginPage extends Component {
   }
 }
 
-export default LoginPage;
+export default withRouter(LoginPage);

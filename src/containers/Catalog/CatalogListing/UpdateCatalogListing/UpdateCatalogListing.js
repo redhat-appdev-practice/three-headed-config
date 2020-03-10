@@ -7,18 +7,38 @@ import {
   Rating,
   Message
 } from "semantic-ui-react";
-import { addAlbum } from "../../../../services/CatalogService";
+import {
+  addAlbum,
+  editAlbum,
+  getAlbum
+} from "../../../../services/CatalogService";
 
-class AddCatalogListing extends Component {
+class UpdateCatalogListing extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: null,
       title: "",
       year: "",
       label: "",
       rating: 1
     };
     this.message = null;
+  }
+
+  componentDidMount() {
+    const query = new URLSearchParams(this.props.location.search);
+    let albumId = null;
+    for (let param of query.entries()) {
+      if (param[0] === "id") {
+        albumId = +param[1];
+      }
+    }
+    if (albumId !== null) {
+      getAlbum(albumId).then(album => {
+        this.setState(album);
+      });
+    }
   }
 
   handleChange = e => {
@@ -34,8 +54,8 @@ class AddCatalogListing extends Component {
   };
 
   handleSubmit = () => {
-    console.log(this.state);
-    addAlbum(this.state)
+    const funcCall = this.state.id !== null ? editAlbum : addAlbum;
+    funcCall(this.state)
       .then(response => {
         this.message = null;
         this.props.history.push("/");
@@ -51,10 +71,12 @@ class AddCatalogListing extends Component {
   };
 
   render() {
+    const title =
+      this.state.id !== null ? "Edit Catalog Item" : "Add Catalog Item";
     return (
       <Container>
         <Header size="large" textAlign="center">
-          Add Catalog Item
+          {title}
         </Header>
         {this.message}
         <Form onSubmit={this.handleSubmit}>
@@ -85,16 +107,14 @@ class AddCatalogListing extends Component {
               value={this.state.label}
               onChange={this.handleChange}
             />
-            />
           </Form.Field>
           <Form.Field>
             <label>Rating</label>
             <Rating
               icon="star"
-              defaultRating={1}
+              rating={this.state.rating}
               maxRating={5}
               name="rating"
-              value={this.state.rating}
               onRate={this.handleRate}
             />
           </Form.Field>
@@ -105,4 +125,4 @@ class AddCatalogListing extends Component {
   }
 }
 
-export default AddCatalogListing;
+export default UpdateCatalogListing;
