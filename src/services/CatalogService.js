@@ -18,3 +18,7 @@ export const getAlbum = async id => {
   const album = await axios.get(`${config.apiUrl}/catalog/${id}`);
   return album.data;
 };
+
+export const deleteAlbum = id => {
+  return axios.delete(`${config.apiUrl}/catalog/${id}`);
+};
