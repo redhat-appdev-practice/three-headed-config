@@ -12,9 +12,11 @@ This repository supports three modes for running the application set through the
 ### Local Mode
 This mode is fully supported and can be run with the backend in the fake-backend directory.  To start the fake backend, follow these steps
 
-`cd fake-backend`
-`npm i -g json-server`
-`npm start`
+```
+cd fake-backend
+npm i -g json-server
+npm start
+```
 
 After you have installed json-server, you can simply type `npm start` in the fake-backend directory to get it going.  This directory has a db.json file which contains the catalog data.  Modifying this either through the front-end application or by editing the file manually will be watched while the json-server is running so you don't need to stop the backend to make modifications.
 
