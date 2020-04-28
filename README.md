@@ -1,6 +1,6 @@
 This project displays an example usage of a 3-headed config along with fake user authentication and role-based views.
 
-See blog post for detailed information on this repository.
+See https://developers.redhat.com/blog/2020/04/28/contract-first-development-create-a-mock-back-end-for-realistic-data-interactions-with-react/ for detailed information on this repository.
 
 ## Three Configuration Modes
 
